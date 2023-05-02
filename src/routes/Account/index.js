@@ -1,16 +1,9 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
-import { Outlet } from "react-router-dom";
-import Footer from "../../components/Footer";
+import { Navigate, Outlet } from "react-router-dom";
 
 const Account = () => {
-  return (
-    <div>
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </div>
-  );
+  const auth = localStorage.getItem("accesToken");
+  return auth ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default Account;
