@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./index.css";
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -6,6 +7,8 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
   let name, email, password, value;
   const getData = (event) => {
     name = event.target.name;
@@ -14,13 +17,41 @@ const SignUp = () => {
     value = event.target.value;
     setUser({ ...user, [name]: value });
   };
+
+  const postUserData = async (event) => {
+    console.log(user.name, user.email, user.password);
+
+    event.preventDefault();
+    let result = await fetch("http://localhost:5000/register", {
+      method: "post",
+      body: JSON.stringify({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    result = await result.json();
+    // localStorage.setItem("user", JSON.stringify(result));
+    // console.log(result);
+    // navigate("/sigup");
+  };
+  // useEffect(() => {
+  //   const auth = localStorage.getItem("user");
+  //   if (auth) {
+  //     navigate("/login");
+  //   }
+  // }, []);
+
   // console.log(user.name);
   // console.log(user.email);
-  console.log(user.password);
+  // console.log(user.password);
   return (
     <div>
       <div>
-        <form className="register">
+        <form className="register" onSubmit={postUserData}>
           <h1>Register</h1>
           <input
             className="inputBox"
@@ -46,10 +77,13 @@ const SignUp = () => {
             value={user.password}
             onChange={getData}
           />
-          <button style={{ width: "380px" }} className="inputBox" type="button">
+          <button type="submit" style={{ width: "380px" }} className="inputBox">
             SignUp
           </button>
         </form>
+        <h3>
+          Already have an account <Link to="/login">Login</Link>
+        </h3>
       </div>
     </div>
   );
