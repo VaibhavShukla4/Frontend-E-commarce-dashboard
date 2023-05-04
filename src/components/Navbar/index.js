@@ -8,7 +8,7 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/login");
   };
-  console.log(JSON.parse(auth).name);
+  // console.log(JSON.parse(auth).name);
   return (
     <nav className="nav-ul">
       {auth ? (
@@ -27,7 +27,10 @@ const Navbar = () => {
               Logout
             </Link>
           </li>
-          <li style={{ color: "white" }}>{JSON.parse(auth).name}</li>
+          <li style={{ color: "white" }}>
+            {JSON.parse(auth).name.charAt(0).toUpperCase() +
+              JSON.parse(auth).name.slice(1)}
+          </li>
         </ul>
       ) : (
         <ul>
