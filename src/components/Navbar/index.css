@@ -13,6 +13,9 @@ ul {
   padding: 0px 30px;
   color: #fff;
 }
+.nav-right {
+  text-align: right;
+}
 /* a {
   padding: 10px;
 } */
