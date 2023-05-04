@@ -8,31 +8,37 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/login");
   };
+  // console.log(JSON.parse(auth).name);
   return (
     <nav className="nav-ul">
-      <ul>
-        <li>
-          <Link to="/">Products</Link>
-        </li>
-        <li>
-          <Link to="/add">Add Products</Link>
-        </li>
-        <li>
-          <Link to="/update">Update Products</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-        <li>
-          {auth ? (
+      {auth ? (
+        <ul>
+          <li>
+            <Link to="/">Products</Link>
+          </li>
+          <li>
+            <Link to="/add">Add Products</Link>
+          </li>
+          <li>
+            <Link to="/update">Update Products</Link>
+          </li>
+          <li>
             <Link to="/signup" onClick={handleLogout}>
               Logout
             </Link>
-          ) : (
-            <Link to="/signup">Signup</Link>
-          )}
-        </li>
-      </ul>
+          </li>
+          <li style={{ color: "white" }}>
+            {JSON.parse(auth).name.charAt(0).toUpperCase() +
+              JSON.parse(auth).name.slice(1)}
+          </li>
+        </ul>
+      ) : (
+        <ul>
+          <li>
+            <Link to="/signup">SignUp</Link>
+          </li>
+        </ul>
+      )}
     </nav>
   );
 };
