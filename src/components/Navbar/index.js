@@ -27,10 +27,10 @@ const Navbar = () => {
               Logout
             </Link>
           </li>
-          <li style={{ color: "white" }}>
+          {/* <li style={{ color: "white" }}>
             {JSON.parse(auth).name.charAt(0).toUpperCase() +
               JSON.parse(auth).name.slice(1)}
-          </li>
+          </li> */}
         </ul>
       ) : (
         <ul>
