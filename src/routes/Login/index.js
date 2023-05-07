@@ -17,15 +17,15 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
     });
     result = await result.json();
-    localStorage.setItem("accesToken", JSON.stringify(result));
-    console.log(result.name);
-    // if (result.email !== result.email) {
-
-    // }
-
-    navigate("/");
+    if (result.auth) {
+      localStorage.setItem("user", JSON.stringify(result.user));
+      localStorage.setItem("accesToken", JSON.stringify(result.auth));
+      navigate("/");
+    } else {
+      alert("Please Enter Correct Credential");
+    }
   };
-  console.log(email);
+  // console.log(email);
   useEffect(() => {
     const auth = localStorage.getItem("accesToken");
     if (auth) {

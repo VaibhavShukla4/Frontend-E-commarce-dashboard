@@ -34,9 +34,10 @@ const SignUp = () => {
       },
     });
     result = await result.json();
-    // localStorage.setItem("user", JSON.stringify(result));
+    localStorage.setItem("user", JSON.stringify(result.result));
+    localStorage.setItem("accesToken", JSON.stringify(result.auth));
     // console.log(result);
-    // navigate("/sigup");
+    navigate("/login");
   };
   // useEffect(() => {
   //   const auth = localStorage.getItem("user");
