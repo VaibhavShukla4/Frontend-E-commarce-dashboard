@@ -7,12 +7,14 @@ const Products = () => {
   useEffect(() => {
     getProductList();
   }, []);
-
+  // console.log(JSON.parse(localStorage.getItem("accesToken")));
   const getProductList = async () => {
     let data = await fetch("http://localhost:5000/list-products", {
       method: "get",
       body: null,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        authorization: JSON.parse(localStorage.getItem("accesToken")),
+      },
     });
 
     data = await data.json();

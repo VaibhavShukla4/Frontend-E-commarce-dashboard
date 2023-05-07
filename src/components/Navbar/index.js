@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 const Navbar = () => {
   const navigate = useNavigate();
-  const auth = localStorage.getItem("accesToken");
+  const auth = localStorage.getItem("user");
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
   };
-  // console.log(JSON.parse(auth).name);
+  console.log(JSON.parse(auth));
   return (
     <nav className="nav-ul">
       {auth ? (
@@ -27,10 +27,10 @@ const Navbar = () => {
               Logout
             </Link>
           </li>
-          {/* <li style={{ color: "white" }}>
+          <li style={{ color: "white" }}>
             {JSON.parse(auth).name.charAt(0).toUpperCase() +
               JSON.parse(auth).name.slice(1)}
-          </li> */}
+          </li>
         </ul>
       ) : (
         <ul>
