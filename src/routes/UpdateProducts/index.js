@@ -53,7 +53,11 @@ const UpdateProducts = () => {
         userId: JSON.parse(userId)._id,
         compony: updateProduct.compony,
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        authorization: `bearere ${JSON.parse(
+          localStorage.getItem("accesToken")
+        )}`,
+      },
     });
     data = await data.json({});
     navigate("/");

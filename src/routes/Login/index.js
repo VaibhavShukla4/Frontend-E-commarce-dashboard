@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+let auth;
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,14 +21,18 @@ const Login = () => {
     if (result.auth) {
       localStorage.setItem("user", JSON.stringify(result.user));
       localStorage.setItem("accesToken", JSON.stringify(result.auth));
+      console.log(
+        localStorage.setItem("accesToken", JSON.stringify(result.auth))
+      );
       navigate("/");
     } else {
       alert("Please Enter Correct Credential");
     }
   };
-  // console.log(email);
+  console.log(auth);
+
   useEffect(() => {
-    const auth = localStorage.getItem("accesToken");
+    auth = localStorage.getItem("accesToken");
     if (auth) {
       navigate("/");
     }

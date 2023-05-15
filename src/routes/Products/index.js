@@ -7,13 +7,15 @@ const Products = () => {
   useEffect(() => {
     getProductList();
   }, []);
-  // console.log(JSON.parse(localStorage.getItem("accesToken")));
+  console.log(`bearere ${JSON.parse(localStorage.getItem("accesToken"))}`);
   const getProductList = async () => {
     let data = await fetch("http://localhost:5000/list-products", {
       method: "get",
       body: null,
       headers: {
-        authorization: JSON.parse(localStorage.getItem("accesToken")),
+        authorization: `bearere ${JSON.parse(
+          localStorage.getItem("accesToken")
+        )}`,
       },
     });
 
@@ -28,7 +30,11 @@ const Products = () => {
       body: JSON.stringify({
         _id: id,
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        authorization: `bearere ${JSON.parse(
+          localStorage.getItem("accesToken")
+        )}`,
+      },
     });
     deleteData = await deleteData.json();
     console.log(deleteData);
@@ -40,7 +46,13 @@ const Products = () => {
     // console.log(text);
     let key = event.target.value;
     if (key) {
-      const result = await fetch(`http://localhost:5000/search/${key}`);
+      const result = await fetch(`http://localhost:5000/search/${key}`, {
+        headers: {
+          authorization: `bearere ${JSON.parse(
+            localStorage.getItem("accesToken")
+          )}`,
+        },
+      });
       result = await result.json();
       if (result) {
         setData(result);

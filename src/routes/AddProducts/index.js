@@ -39,7 +39,11 @@ const AddProducts = () => {
         userId: JSON.parse(userId)._id,
         compony: addProduct.compony,
       }),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        authorization: `bearere ${JSON.parse(
+          localStorage.getItem("accesToken")
+        )}`,
+      },
     });
     result = await result.json();
   };

@@ -36,8 +36,11 @@ const SignUp = () => {
     result = await result.json();
     localStorage.setItem("user", JSON.stringify(result.result));
     localStorage.setItem("accesToken", JSON.stringify(result.auth));
+    console.log(
+      localStorage.setItem("accesToken", JSON.stringify(result.auth))
+    );
     // console.log(result);
-    navigate("/login");
+    // navigate("/login");
   };
   // useEffect(() => {
   //   const auth = localStorage.getItem("user");
